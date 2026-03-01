@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap');
+
+
+.navbar {
+    background-color: #8ec6c3;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.navbar .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #6b3244 !important;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.22s ease;
+}
+
+.navbar .navbar-brand::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #8EC6C3;
+    border-radius: 2px;
+    transition: width 0.25s ease;
+}
+
+.navbar .navbar-brand:hover {
+    color: #8EC6C3 !important;
+}
+
+.navbar .navbar-brand:hover::after {
+    width: 100%;
+}
+
+.navbar .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #6b3244 !important;
+    text-decoration: none;
+    padding: 0.4rem 1rem !important;
+    border-radius: 6px;
+    position: relative;
+    transition: color 0.22s ease, background 0.22s ease;
+}
+
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    height: 2px;
+    background: #6b3244;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 0.22s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #780c2e !important;
+    background: rgba(182, 199, 168, 0.08);
+}
+
+.navbar .nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+.navbar .btn-login {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8A3F52 !important;
+    background: #8EC6C3;
+    border: none;
+    border-radius: 8px;
+    padding: 0.45rem 1.3rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.22s ease, transform 0.15s ease, box-shadow 0.22s ease;
+}
+
+.navbar .btn-login:hover {
+    background: #6b3244;
+    color: #8ec6c3 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(142, 198, 195, 0.3);
+}
