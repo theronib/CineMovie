@@ -4,7 +4,7 @@ import "./Navbar.css";
 export default function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg px-3">
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand" to="/home">
                 CINEMOVIE
             </Link>
 

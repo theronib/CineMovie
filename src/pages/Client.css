@@ -276,9 +276,7 @@ h2::after {
   background: var(--color-accent);
 }
 
-/* ============================================================
-   GENRE CHIP (commented out section, ready when needed)
-   ============================================================ */
+
 .genre-chip {
   font-family: var(--font-inter);
   font-size: 13px;
@@ -300,9 +298,6 @@ h2::after {
   color: var(--color-accent);
 }
 
-/* ============================================================
-   RESPONSIVE TWEAKS
-   ============================================================ */
 @media (max-width: 576px) {
   h2 {
     font-size: 1.5rem;

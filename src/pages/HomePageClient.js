@@ -1,27 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Client.css";
+import api from "../api/AxiosConfig"; 
 import { useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
 
 export default function HomePageClient() {
-    const [films] = useState([
-        { id: 1, titleName: "Inception", releaseYear: 2010, genres: ["Action", "SciFi", "Thriller"], rating: 8.8, imageUrl: "/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg", actors: ["Leonardo DiCaprio", "Joseph Gordon-Levitt"], director: ["Christopher Nolan"] },
-        { id: 2, titleName: "The Dark Knight", releaseYear: 2008, genres: ["Action", "Crime", "Drama"], rating: 9.0, imageUrl: "/qJ2tW6WMUDux911r6m7haRef0WH.jpg", actors: ["Christian Bale", "Heath Ledger"], director: ["Christopher Nolan"] },
-        { id: 3, titleName: "Interstellar", releaseYear: 2014, genres: ["Adventure", "Drama", "SciFi"], rating: 8.6, imageUrl: "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg", actors: ["Matthew McConaughey", "Anne Hathaway"], director: ["Christopher Nolan"] },
-        { id: 4, titleName: "The Shawshank Redemption", releaseYear: 1994, genres: ["Drama"], rating: 9.3, imageUrl: "/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg", actors: ["Tim Robbins", "Morgan Freeman"], director: ["Frank Darabont"] },
-        { id: 5, titleName: "Pulp Fiction", releaseYear: 1994, genres: ["Crime", "Drama"], rating: 8.9, imageUrl: "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg", actors: ["John Travolta", "Uma Thurman"], director: ["Quentin Tarantino"] },
-        { id: 6, titleName: "The Matrix", releaseYear: 1999, genres: ["Action", "SciFi"], rating: 8.7, imageUrl: "/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg", actors: ["Keanu Reeves", "Laurence Fishburne"], director: ["Lana Wachowski", "Lilly Wachowski"] },
-        { id: 7, titleName: "Fight Club", releaseYear: 1999, genres: ["Drama", "Thriller"], rating: 8.8, imageUrl: "/2lECpi35Hnbpa4y46JX0aY3AWTy.jpg", actors: ["Brad Pitt", "Edward Norton"], director: ["David Fincher"] },
-        { id: 8, titleName: "The Lord of the Rings: The Fellowship of the Ring", releaseYear: 2001, genres: ["Adventure", "Fantasy"], rating: 8.8, imageUrl: "/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg", actors: ["Elijah Wood", "Ian McKellen"], director: ["Peter Jackson"] },
-        { id: 9, titleName: "Goodfellas", releaseYear: 1990, genres: ["Crime", "Drama"], rating: 8.7, imageUrl: "/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg", actors: ["Ray Liotta", "Robert De Niro"], director: ["Martin Scorsese"] },
-        { id: 10, titleName: "Schindler's List", releaseYear: 1993, genres: ["Biography", "Drama", "History"], rating: 9.0, imageUrl: "/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg", actors: ["Liam Neeson", "Ben Kingsley"], director: ["Steven Spielberg"] },
-        { id: 11, titleName: "The Silence of the Lambs", releaseYear: 1991, genres: ["Crime", "Drama", "Thriller"], rating: 8.6, imageUrl: "/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg", actors: ["Jodie Foster", "Anthony Hopkins"], director: ["Jonathan Demme"] },
-        { id: 12, titleName: "Parasite", releaseYear: 2019, genres: ["Comedy", "Drama", "Thriller"], rating: 8.5, imageUrl: "/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg", actors: ["Song Kang-ho", "Lee Sun-kyun"], director: ["Bong Joon-ho"] },
-        { id: 13, titleName: "Whiplash", releaseYear: 2014, genres: ["Drama", "Music"], rating: 8.5, imageUrl: "/7fn624j5lj3xTme2SgiLCeuedmO.jpg", actors: ["Miles Teller", "J.K. Simmons"], director: ["Damien Chazelle"] },
-        { id: 14, titleName: "Gladiator", releaseYear: 2000, genres: ["Action", "Adventure", "Drama"], rating: 8.5, imageUrl: "/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg", actors: ["Russell Crowe", "Joaquin Phoenix"], director: ["Ridley Scott"] },
-    ]);
+    const [films, setFilms] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [search, setSearch] = useState("");
     const [searchField, setSearchField] = useState("title");
@@ -32,8 +18,21 @@ export default function HomePageClient() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        loadFilms();
+    }, []);
+    
+    useEffect(() => {
         setCurrentPage(1);
     }, [search]);
+
+    const loadFilms = async () => {
+        try {
+            const response = await api.get("/titles");
+            setFilms(response.data);
+        } catch (err) {
+            console.error("Failed to load films", err);
+        }
+    };
 
     const filteredFilms = films.filter((film) => {
         const query = search.toLowerCase().split(' ').join('');
@@ -75,24 +74,6 @@ export default function HomePageClient() {
 
     return (
         <div className="container py-4">
-            {/*<div className="flex flex-wrap gap-2 mt-4" style={{display: "flex", justifyContent: "center"}}>*/}
-            {/*    {genres.map((genre) => (*/}
-            {/*        <span*/}
-            {/*            key={genre}*/}
-            {/*            className={`genre-chip ${selectedGenre === genre ? "active" : ""}`}*/}
-            {/*            onClick={() => setSelectedGenre(selectedGenre === genre ? null : genre)}*/}
-            {/*        >*/}
-            {/*          {genre}*/}
-            {/*        </span>*/}
-            {/*    ))}*/}
-            {/*</div>*/}
-
-            {/* <RecommendationsSection
-                key={favorites.length}
-                favoriteFilms={films.filter(f => favorites.includes(f.id))}
-                allFilms={films}
-            /> */}
-
             <div className="search-wrapper mb-4 d-flex flex-column flex-md-row align-items-md-center gap-2">
                 <div className="position-relative flex-grow-1">
                     <i className="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
@@ -125,7 +106,7 @@ export default function HomePageClient() {
                         <Card
                             className="h-100 shadow-sm film-card"
                             style={{ cursor: "pointer" }}
-                            onClick={() => navigate(`/user-page/films/info/${film.id}`)}
+                            onClick={() => navigate(`/home/films/info/${film.id}`)}
                         >
                             <button
                                 className={`btn btn-sm position-absolute top-0 end-0 m-2 ${favorites.includes(film.id) ? "btn-danger" : "btn-outline-danger"
@@ -148,12 +129,6 @@ export default function HomePageClient() {
                             />
                             <Card.Body>
                                 <Card.Title className="text-truncate">{film.titleName}</Card.Title>
-                                {/* <Card.Text className="text-muted mb-1">
-                                    <ReadMore text={
-                                        `${film.releaseYear} • ${film.genres ?
-                                            film.genres.join(', ').replace(/([a-z])([A-Z])/g, "$1 $2") : '-'}`
-                                    } maxLength={50}/>
-                                </Card.Text> */}
                                 <Card.Text>
                                     ⭐ <strong>{film.rating}</strong>
                                 </Card.Text>

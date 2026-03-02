@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import HomePageClient from "./pages/HomePageClient";
+import FilmInfoPageClient from './pages/FilmInfoPageClient';
 import Navbar from "./layout/Navbar";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
@@ -13,6 +14,13 @@ function App() {
           path="/home"
           element={
             <HomePageClient />
+          }
+        />
+
+        <Route
+          path="/home/films/info/:id"
+          element={
+            <FilmInfoPageClient />
           }
         />
       </Routes>
