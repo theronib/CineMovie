@@ -1,0 +1,123 @@
+/* ── Reviews Admin Page ──────────────────────────────────────── */
+
+.reviews-admin-page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-inter);
+}
+
+/* ── Title ──────────────────────────────────────────────────── */
+
+.reviews-admin-title {
+  font-family: var(--font-montserrat);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-milk);
+  letter-spacing: 0.01em;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0 !important;
+}
+
+.reviews-admin-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+/* ── Active filter chips ─────────────────────────────────────── */
+
+.reviews-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.reviews-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0.3rem 0.5rem 0.3rem 0.8rem;
+  border-radius: 20px;
+  letter-spacing: 0.02em;
+}
+
+.reviews-filter-chip.user {
+  background: rgba(142, 198, 195, 0.15);
+  border: 1.5px solid rgba(142, 198, 195, 0.35);
+  color: var(--color-accent);
+}
+
+.reviews-filter-chip.film {
+  background: rgba(182, 199, 168, 0.15);
+  border: 1.5px solid rgba(182, 199, 168, 0.35);
+  color: var(--color-olive);
+}
+
+.reviews-filter-chip button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 11px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.65;
+  color: inherit;
+  transition: opacity var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.reviews-filter-chip button:hover {
+  opacity: 1;
+}
+
+/* ── Table cells ─────────────────────────────────────────────── */
+
+.reviews-film-name {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  max-width: 180px;
+}
+
+.reviews-text-cell {
+  max-width: 320px;
+}
+
+.reviews-info {
+  font-family: var(--font-roboto);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--color-muted);
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .reviews-admin-title {
+    font-size: 1.5rem;
+  }
+
+  .reviews-text-cell {
+    max-width: 160px;
+  }
+
+  .reviews-film-name {
+    max-width: 100px;
+  }
+}

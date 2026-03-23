@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Client.css";
-import api from "../api/AxiosConfig"; 
+import "../Client.css";
+import api from "../../api/AxiosConfig"; 
 import { useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
 

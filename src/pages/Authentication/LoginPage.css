@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@300;400&family=Montserrat:wght@500;600;700&display=swap');
+
+/* ── Auth pages: Login & Register ───────────────────────────── */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Center the Bootstrap container/row when no image panel */
+.login-page .container,
+.login-container {
+  width: 100%;
+}
+
+.login-page .row {
+  justify-content: center !important;
+}
+
+/* Card max-width for single-column layout */
+.login-page .card {
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Single column — full width card body */
+.login-page .card .row.g-0 {
+  display: block !important;
+}
+
+.login-page .card .col-md-7,
+.login-page .card .col-12.col-md-6 {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+}
+
+/* Card wrapper */
+.login-page .card {
+  background: var(--color-card) !important;
+  border: 1px solid rgba(226, 208, 180, 0.12) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ── Side image panel ───────────────────────────────────────── */
+
+.login-bg {
+  min-height: 380px;
+  position: relative;
+}
+
+.login-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(138, 63, 82, 0.45) 0%, rgba(122, 53, 71, 0.65) 100%);
+  pointer-events: none;
+}
+
+/* ── Form body ──────────────────────────────────────────────── */
+
+.login-page .card-body {
+  background: var(--color-card) !important;
+  padding: 2rem 1.75rem !important;
+}
+
+/* Title */
+.title-one {
+  font-family: var(--font-montserrat) !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: var(--color-milk) !important;
+  letter-spacing: 0.01em;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.25rem !important;
+}
+
+.title-one::after {
+  content: '';
+  display: block;
+  width: 42px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin-top: 5px;
+}
+
+/* Labels */
+.login-page .form-label {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Inputs — inherit global .form-control rules, extend here */
+.login-page .form-control {
+  padding: 0.6rem 0.85rem !important; 
+}
+
+/* Show/Hide password button */
+.login-page .input-group .btn-outline-secondary {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(246, 241, 230, 0.06) !important;
+  border: 1.5px solid rgba(142, 198, 195, 0.35) !important;
+  border-left: none !important;
+  color: var(--color-muted) !important;
+  border-radius: 0 var(--radius-btn) var(--radius-btn) 0 !important;
+  padding: 0.6rem 0.9rem;
+  transition: background var(--transition), color var(--transition);
+}
+
+.login-page .input-group .btn-outline-secondary:hover {
+  background: rgba(142, 198, 195, 0.15) !important;
+  color: var(--color-accent) !important;
+}
+
+/* Remember me / forgot */
+.login-page .form-check-input {
+  background-color: rgba(246, 241, 230, 0.08);
+  border: 1.5px solid rgba(142, 198, 195, 0.4);
+  cursor: pointer;
+}
+
+.login-page .form-check-input:checked {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.login-page .form-check-input:focus {
+  box-shadow: 0 0 0 3px rgba(142, 198, 195, 0.18);
+}
+
+.login-page .form-check-label {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+/* Forgot password link */
+.login-page .small.text-muted {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  color: var(--color-muted) !important;
+  transition: color var(--transition);
+}
+
+.login-page .small.text-muted:hover {
+  color: var(--color-accent) !important;
+  text-decoration: underline;
+}
+
+/* ── Primary action buttons ─────────────────────────────────── */
+
+.login-button {
+  font-family: var(--font-montserrat) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em;
+  padding: 0.65rem 1.25rem !important;
+  border-radius: var(--radius-btn) !important;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition) !important;
+}
+
+/* Login — accent teal */
+.login-page .btn-primary.login-button {
+  background: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-bg) !important;
+}
+
+.login-page .btn-primary.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(142, 198, 195, 0.38);
+  background: #a3d4d1 !important;
+  border-color: #a3d4d1 !important;
+}
+
+/* Register — olive green */
+.login-page .btn-success.login-button {
+  background: var(--color-olive) !important;
+  border-color: var(--color-olive) !important;
+  color: var(--color-bg) !important;
+}
+
+.login-page .btn-success.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(182, 199, 168, 0.35);
+  background: #c9d9be !important;
+  border-color: #c9d9be !important;
+}
+
+.login-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── Social OAuth buttons ───────────────────────────────────── */
+
+.login-page .btn-outline-secondary.w-100 {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  background: rgba(246, 241, 230, 0.05) !important;
+  border: 1.5px solid rgba(226, 208, 180, 0.22) !important;
+  color: var(--color-muted) !important;
+  border-radius: var(--radius-btn) !important;
+  padding: 0.5rem;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.login-page .btn-outline-secondary.w-100:not(:disabled):hover {
+  background: rgba(142, 198, 195, 0.12) !important;
+  border-color: rgba(142, 198, 195, 0.4) !important;
+  color: var(--color-accent) !important;
+}
+
+/* "Or log in via" separator */
+.login-page .text-center .text-muted {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  color: rgba(226, 208, 180, 0.5) !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.login-page .text-center .text-muted::before,
+.login-page .text-center .text-muted::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(226, 208, 180, 0.18);
+}
+
+/* ── Role switcher (Register) ───────────────────────────────── */
+
+.login-page .form-switch .form-check-input {
+  width: 2.5em;
+  height: 1.25em;
+  background-color: rgba(226, 208, 180, 0.18);
+  border-color: rgba(226, 208, 180, 0.3);
+  cursor: pointer;
+}
+
+.login-page .form-switch .form-check-input:checked {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.login-page .form-switch .form-check-input:focus {
+  box-shadow: 0 0 0 3px rgba(142, 198, 195, 0.18);
+}
+
+.login-page .d-flex > span {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  user-select: none;
+}
+
+/* ── Alerts ─────────────────────────────────────────────────── */
+
+.login-page .alert-danger {
+  font-family: var(--font-roboto);
+  font-size: 13px;
+  font-weight: 400;
+  background: rgba(138, 63, 82, 0.35) !important;
+  border: 1.5px solid rgba(226, 140, 140, 0.38) !important;
+  color: #f4b8be !important;
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+}
+
+/* ── Footer copyright ───────────────────────────────────────── */
+
+.login-page ~ div,
+.text-center.mt-3.small.text-muted {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  color: rgba(226, 208, 180, 0.38) !important;
+}
+
+/* ── Register inner links ───────────────────────────────────── */
+
+.login-page a,
+.login-page .text-center small a {
+  color: var(--color-accent) !important;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition), text-decoration var(--transition);
+}
+
+.login-page a:hover {
+  color: #a3d4d1 !important;
+  text-decoration: underline;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .login-page .card-body {
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  .title-one {
+    font-size: 1.25rem !important;
+  }
+}

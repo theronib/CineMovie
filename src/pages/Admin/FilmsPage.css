@@ -1,0 +1,315 @@
+/* ── Films Admin Page ────────────────────────────────────────── */
+
+.films-admin-page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-inter);
+}
+
+/* ── Title ──────────────────────────────────────────────────── */
+
+.films-admin-title {
+  font-family: var(--font-montserrat);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-milk);
+  letter-spacing: 0.01em;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0 !important;
+}
+
+.films-admin-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+/* ── Add button ─────────────────────────────────────────────── */
+
+.films-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-btn);
+  background: rgba(142, 198, 195, 0.12);
+  border: 1.5px solid rgba(142, 198, 195, 0.4);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: background var(--transition), border-color var(--transition),
+              color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.films-add-btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(142, 198, 195, 0.32);
+  text-decoration: none;
+}
+
+/* ── Film card — delete button overlay ─────────────────────── */
+
+.film-card {
+  position: relative;
+}
+
+.film-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.film-delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(226, 140, 140, 0.45);
+  background: rgba(138, 63, 82, 0.65);
+  color: #f4b8be;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity var(--transition), transform var(--transition),
+              background var(--transition), border-color var(--transition);
+  backdrop-filter: blur(4px);
+}
+
+.film-card:hover .film-delete-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.film-delete-btn:hover {
+  background: rgba(138, 63, 82, 0.9) !important;
+  border-color: #f4b8be !important;
+  transform: scale(1.15) !important;
+}
+
+/* ── Custom modals ──────────────────────────────────────────── */
+
+.films-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.films-modal {
+  background: var(--color-card);
+  border: 1px solid rgba(226, 208, 180, 0.14);
+  border-radius: var(--radius-card);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  width: 100%;
+  max-width: 440px;
+  overflow: hidden;
+}
+
+.films-modal-lg {
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Modal header */
+.films-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid rgba(226, 208, 180, 0.1);
+  font-family: var(--font-montserrat);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-milk);
+}
+
+.films-modal-close {
+  background: none;
+  border: none;
+  color: rgba(226, 208, 180, 0.5);
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color var(--transition);
+}
+
+.films-modal-close:hover {
+  color: var(--color-milk);
+}
+
+/* Modal body */
+.films-modal-body {
+  padding: 1.5rem;
+  font-family: var(--font-roboto);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+/* Info rows inside detail modal */
+.films-modal-info-title {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(226, 208, 180, 0.45);
+  margin-bottom: 0.9rem;
+}
+
+.films-modal-info-row {
+  display: flex;
+  gap: 0.75rem;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--color-milk);
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(226, 208, 180, 0.07);
+}
+
+.films-modal-info-row:last-of-type {
+  border-bottom: none;
+}
+
+.films-modal-info-row span:first-child {
+  font-weight: 600;
+  color: var(--color-accent);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.films-modal-info-row span:last-child {
+  color: var(--color-muted);
+  font-weight: 300;
+}
+
+.films-modal-overview {
+  font-family: var(--font-roboto);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--color-muted);
+  line-height: 1.7;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(226, 208, 180, 0.08);
+}
+
+/* Modal footer */
+.films-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(226, 208, 180, 0.1);
+}
+
+.films-modal-btn {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: background var(--transition), border-color var(--transition),
+              color var(--transition), transform var(--transition);
+}
+
+.films-modal-btn:hover {
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.films-modal-btn.cancel {
+  background: rgba(246, 241, 230, 0.06);
+  border-color: rgba(226, 208, 180, 0.22);
+  color: var(--color-muted);
+}
+
+.films-modal-btn.cancel:hover {
+  background: rgba(246, 241, 230, 0.12);
+  border-color: rgba(226, 208, 180, 0.4);
+  color: var(--color-milk);
+}
+
+.films-modal-btn.delete {
+  background: rgba(138, 63, 82, 0.25);
+  border-color: rgba(226, 140, 140, 0.4);
+  color: #f4b8be;
+}
+
+.films-modal-btn.delete:hover {
+  background: rgba(138, 63, 82, 0.5);
+  border-color: #f4b8be;
+  color: #fcd0d4;
+}
+
+.films-modal-btn.edit {
+  background: rgba(142, 198, 195, 0.12);
+  border-color: rgba(142, 198, 195, 0.4);
+  color: var(--color-accent);
+}
+
+.films-modal-btn.edit:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* ── Scrollbar inside modal ─────────────────────────────────── */
+
+.films-modal-lg::-webkit-scrollbar {
+  width: 6px;
+}
+
+.films-modal-lg::-webkit-scrollbar-track {
+  background: var(--color-card);
+}
+
+.films-modal-lg::-webkit-scrollbar-thumb {
+  background: rgba(142, 198, 195, 0.35);
+  border-radius: 10px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 576px) {
+  .films-admin-title {
+    font-size: 1.5rem;
+  }
+
+  .films-modal-body {
+    padding: 1.25rem;
+  }
+}

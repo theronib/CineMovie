@@ -1,0 +1,100 @@
+/* ── UpdateFilm Page ─────────────────────────────────────────── */
+/* Reuses: form-control (client.css), users-alert (UsersPage.css) */
+/* addfilms-loading/spinner (AddFilms.css), films-modal-btn       */
+/* (FilmsPage.css), reviews-admin-title (AllReviewsPage.css)      */
+
+.update-film-page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-inter);
+}
+
+/* ── Form card ──────────────────────────────────────────────── */
+
+.update-film-card {
+  background: var(--color-card);
+  border: 1px solid rgba(226, 208, 180, 0.12);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 2rem 2rem;
+}
+
+/* ── Field wrapper ──────────────────────────────────────────── */
+
+.uf-field {
+  margin-bottom: 1.25rem;
+}
+
+/* ── Label ──────────────────────────────────────────────────── */
+
+.uf-label {
+  display: block;
+  font-family: var(--font-inter);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(226, 208, 180, 0.55);
+  margin-bottom: 0.4rem;
+}
+
+/* ── Textarea ───────────────────────────────────────────────── */
+
+.update-film-page textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ── Validation ─────────────────────────────────────────────── */
+
+.uf-invalid {
+  border-color: rgba(226, 140, 140, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(226, 140, 140, 0.12) !important;
+}
+
+.uf-error {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  color: #f4b8be;
+  margin-top: 0.35rem;
+}
+
+/* ── Rating hint ────────────────────────────────────────────── */
+
+.uf-hint {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  color: rgba(226, 208, 180, 0.45);
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* ── Actions row ────────────────────────────────────────────── */
+
+.uf-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(226, 208, 180, 0.08);
+  margin-top: 0.5rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 576px) {
+  .update-film-card {
+    padding: 1.25rem;
+  }
+
+  .uf-actions {
+    flex-direction: column-reverse;
+    gap: 0.6rem;
+  }
+
+  .uf-actions .films-modal-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

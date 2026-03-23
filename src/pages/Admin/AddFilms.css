@@ -1,0 +1,101 @@
+/* ── AddFilms Page ───────────────────────────────────────────── */
+/* Reuses: film-card, pagination, films-modal-* from client.css  */
+/* and FilmsPage.css. Only page-specific styles here.            */
+
+.addfilms-page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-inter);
+}
+
+/* ── Loading ────────────────────────────────────────────────── */
+
+.addfilms-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+}
+
+.addfilms-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(142, 198, 195, 0.2);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Title ──────────────────────────────────────────────────── */
+
+.addfilms-title {
+  font-family: var(--font-montserrat);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-milk);
+  letter-spacing: 0.01em;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0 !important;
+}
+
+.addfilms-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin: 6px auto 0;
+}
+
+/* ── Add overlay button on card ─────────────────────────────── */
+
+.addfilms-add-overlay {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  opacity: 0;
+  white-space: nowrap;
+  font-family: var(--font-montserrat);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-btn);
+  background: var(--color-accent);
+  border: none;
+  color: var(--color-bg);
+  cursor: pointer;
+  transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+  /* box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); */
+  /* z-index: 3; */
+}
+
+.film-card:hover .addfilms-add-overlay {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.addfilms-add-overlay:hover {
+  background: #a3d4d1;
+  box-shadow: 0 6px 20px rgba(142, 198, 195, 0.4);
+}
+
+/* ── Pagination page counter ────────────────────────────────── */
+
+.addfilms-page-counter {
+  font-family: var(--font-montserrat) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  min-width: 80px;
+  text-align: center;
+  pointer-events: none;
+}

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../api/AxiosConfig"; 
+import api from "../../api/AxiosConfig"; 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Client.css";
+import "../Client.css";
 import "./FilmPage.css";
 
 export default function FilmInfoPageClient() {

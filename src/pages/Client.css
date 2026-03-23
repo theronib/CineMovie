@@ -167,19 +167,6 @@ h2::after {
   position: relative;
 }
 
-.film-card::before {
-  content: '';
-  position: absolute;
-  bottom: 100px;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(transparent, var(--color-card));
-  z-index: 1;
-  pointer-events: none;
-}
-
-
 .btn-outline-danger,
 .btn-danger {
   font-family: var(--font-inter);

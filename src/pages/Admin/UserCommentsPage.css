@@ -1,0 +1,19 @@
+.comments-user-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  background: rgba(182, 199, 168, 0.12);
+  border: 1.5px solid rgba(182, 199, 168, 0.3);
+  color: var(--color-olive);
+  letter-spacing: 0.03em;
+}
+
+.comments-user-id .bi {
+  font-size: 13px;
+  opacity: 0.75;
+}

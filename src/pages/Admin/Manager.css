@@ -1,0 +1,124 @@
+/* ── Manager Home Page ───────────────────────────────────────── */
+
+.manager-page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-inter);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* ── Page title ─────────────────────────────────────────────── */
+
+.manager-title {
+  font-family: var(--font-montserrat) !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: var(--color-milk) !important;
+  letter-spacing: 0.01em;
+  position: relative;
+  display: inline-block;
+}
+
+.manager-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin: 6px auto 0;
+}
+
+/* ── Section cards ──────────────────────────────────────────── */
+
+.manager-card {
+  background: var(--color-card) !important;
+  border: 1px solid rgba(226, 208, 180, 0.12) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.manager-card:hover {
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+  border-color: rgba(142, 198, 195, 0.38) !important;
+}
+
+.manager-card .card-body {
+  background: var(--color-card);
+  padding: 2.25rem 1.75rem !important;
+}
+
+/* Icon wrapper */
+.manager-icon-wrap {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(142, 198, 195, 0.12);
+  border: 1.5px solid rgba(142, 198, 195, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.manager-card:hover .manager-icon-wrap {
+  background: rgba(142, 198, 195, 0.22);
+  border-color: rgba(142, 198, 195, 0.5);
+}
+
+/* Card title */
+.manager-card-title {
+  font-family: var(--font-montserrat) !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  color: var(--color-milk) !important;
+  margin-bottom: 0.5rem !important;
+  letter-spacing: 0.01em;
+}
+
+/* Card description */
+.manager-card-desc {
+  font-family: var(--font-roboto) !important;
+  font-size: 13px !important;
+  font-weight: 300 !important;
+  color: var(--color-muted) !important;
+  line-height: 1.55;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Follow button */
+.manager-btn {
+  font-family: var(--font-montserrat) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: var(--radius-btn) !important;
+  background: rgba(142, 198, 195, 0.1) !important;
+  border: 1.5px solid rgba(142, 198, 195, 0.4) !important;
+  color: var(--color-accent) !important;
+  transition: background var(--transition), border-color var(--transition),
+              color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.manager-btn:hover {
+  background: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-bg) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(142, 198, 195, 0.35);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 576px) {
+  .manager-title {
+    font-size: 1.5rem !important;
+  }
+}
