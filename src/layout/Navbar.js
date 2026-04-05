@@ -20,6 +20,11 @@ export default function Navbar() {
                     CINEMOVIE
                 </Link>
 
+
+            )}
+
+            {role === "user" && (
+                <a className="btn btn-login" href="/user-page/films/favourite/">Recommendations</a>
             )}
 
             {role === "manager" && (
@@ -35,7 +40,7 @@ export default function Navbar() {
                         <Link className="nav-link" to="/user-page/profile">My profile</Link>
                     </li> */}
 
-                    {role === "user" && (
+                    {role === "client" && (
                         <li className="nav-item">
                             <Link className="nav-link" to="/user-page/films/favourite">Favourite films</Link>
                         </li>

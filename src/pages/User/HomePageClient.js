@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Client.css";
-import api from "../../api/AxiosConfig"; 
+import api from "../../api/AxiosConfig";
 import { useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
@@ -12,15 +12,28 @@ export default function HomePageClient() {
     const [search, setSearch] = useState("");
     const [searchField, setSearchField] = useState("title");
 
+    const [recommendations, setRecommendations] = useState([]);
+
     const [currentPage, setCurrentPage] = useState(1);
     const filmsPerPage = 12;
 
     const navigate = useNavigate();
 
+    // Завантажуємо всі фільми
     useEffect(() => {
         loadFilms();
+        loadFavorites();
     }, []);
-    
+
+    //     // useEffect(() => {
+    //     //     loadFilms();
+    //     // }, []);
+    //     useEffect(() => {
+    //     if (films.length && favorites.length) {
+    //         loadRecommendations();
+    //     }
+    // }, [films, favorites]);
+
     useEffect(() => {
         setCurrentPage(1);
     }, [search]);
@@ -33,6 +46,9 @@ export default function HomePageClient() {
             console.error("Failed to load films", err);
         }
     };
+
+
+
 
     const filteredFilms = films.filter((film) => {
         const query = search.toLowerCase().split(' ').join('');
@@ -59,11 +75,45 @@ export default function HomePageClient() {
         }
     });
 
-    const toggleFavorite = (filmId) => {
-        if (favorites.includes(filmId)) {
-            alert("You can delete this film from your favorites on favourite page");
-        } else {
-            setFavorites([...favorites, filmId]);
+    const loadFavorites = async () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user?.userId) return;
+
+        try {
+            const res = await api.get(`/favs/${user.userId}`, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem("site")}` }
+            });
+            const favIds = res.data.map(fav => fav.titleId);
+            setFavorites(favIds);
+        } catch (err) {
+            console.error("Failed to load favorites", err);
+        }
+    };
+
+    const toggleFavorite = async (filmId) => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user?.userId) return;
+
+        const token = localStorage.getItem("site");
+
+        try {
+            if (favorites.includes(filmId)) {
+                // Не даємо видаляти тут, як раніше
+                alert("You can delete this film from your favorites on favourite page");
+            } else {
+                // POST на бекенд
+                await api.post("/favs", {
+                    userId: user.userId,
+                    titleId: filmId
+                }, {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+
+                // Оновлюємо локальний стан
+                setFavorites(prev => [...prev, filmId]);
+            }
+        } catch (err) {
+            console.error("Failed to toggle favorite", err);
         }
     };
 
@@ -73,6 +123,7 @@ export default function HomePageClient() {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
+
         <div className="container py-4">
             <div className="search-wrapper mb-4 d-flex flex-column flex-md-row align-items-md-center gap-2">
                 <div className="position-relative flex-grow-1">

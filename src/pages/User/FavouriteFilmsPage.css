@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&family=Roboto:wght@300;400&display=swap');
+
+/* ── Reuse project tokens ── */
+:root {
+  --color-bg:       #8A3F52;
+  --color-surface:  #9E4F63;
+  --color-card:     #7a3547;
+  --color-beige:    #E2D0B4;
+  --color-milk:     #F6F1E6;
+  --color-olive:    #B6C7A8;
+  --color-accent:   #8EC6C3;
+  --color-text:     #F6F1E6;
+  --color-muted:    #E2D0B4;
+
+  --font-inter:      'Inter', sans-serif;
+  --font-roboto:     'Roboto', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+
+  --radius-card: 14px;
+  --radius-btn:  8px;
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.28);
+  --transition:  0.22s ease;
+}
+
+/* ── Page shell ── */
+.fav-page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-inter);
+}
+
+/* ── Section headings (match FilmInfoPage style) ── */
+.fav-page h2 {
+  font-family: var(--font-montserrat);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-milk);
+  letter-spacing: 0.01em;
+  display: inline-block;
+  margin-bottom: 1.5rem !important;
+}
+
+.fav-page h2::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+/* ── Hero empty state ── */
+.fav-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1rem;
+  gap: 0.75rem;
+}
+
+.fav-empty .empty-icon {
+  font-size: 4rem;
+  line-height: 1;
+  opacity: 0.55;
+}
+
+.fav-empty h5 {
+  font-family: var(--font-montserrat);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-milk);
+  margin: 0;
+}
+
+.fav-empty p {
+  font-family: var(--font-roboto);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* ── Film card ── */
+.fav-film-card {
+  background: var(--color-card) !important;
+  border: 1px solid rgba(226, 208, 180, 0.12) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor: pointer;
+  position: relative;
+}
+
+.fav-film-card:hover {
+  transform: translateY(-6px) scale(1.018);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.42);
+  border-color: rgba(142, 198, 195, 0.38) !important;
+}
+
+.fav-film-card .card-body {
+  background: var(--color-card);
+  padding: 0.85rem 1rem 1rem;
+}
+
+.fav-film-card .card-title {
+  font-family: var(--font-montserrat);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-milk);
+  margin-bottom: 0.3rem;
+}
+
+.fav-film-card .card-text {
+  font-family: var(--font-roboto);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--color-muted);
+  margin-bottom: 0.25rem;
+}
+
+/* ── Film poster ── */
+.film-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Remove-favourite button (heart) ── */
+.btn-fav-remove {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: var(--color-bg) !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  transition: transform var(--transition), box-shadow var(--transition);
+  z-index: 3;
+}
+
+.btn-fav-remove:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 14px rgba(138, 63, 82, 0.55);
+}
+
+/* ── Recommended card (slightly smaller, no remove btn) ── */
+.rec-film-card {
+  background: var(--color-card) !important;
+  border: 1px solid rgba(226, 208, 180, 0.10) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor: pointer;
+}
+
+.rec-film-card:hover {
+  transform: translateY(-5px) scale(1.016);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.38);
+  border-color: rgba(142, 198, 195, 0.32) !important;
+}
+
+.rec-film-card .card-body {
+  background: var(--color-card);
+  padding: 0.75rem 0.85rem 0.9rem;
+}
+
+.rec-film-card .card-title {
+  font-family: var(--font-montserrat);
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--color-milk);
+  margin-bottom: 0.25rem;
+}
+
+.rec-film-card .card-text {
+  font-family: var(--font-roboto);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--color-muted);
+  margin-bottom: 0.2rem;
+}
+
+/* ── Divider between sections ── */
+.section-divider {
+  border: none;
+  border-top: 1px solid rgba(226, 208, 180, 0.15);
+  margin: 3rem 0;
+}
+
+/* ── Spinner wrapper ── */
+.spinner-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.spinner-border {
+  color: var(--color-accent) !important;
+}
+
+/* ── Alert (no recs / error) ── */
+.alert-secondary {
+  font-family: var(--font-roboto);
+  font-size: 15px;
+  background: rgba(182, 199, 168, 0.12) !important;
+  border: 1.5px solid rgba(182, 199, 168, 0.28) !important;
+  color: var(--color-olive) !important;
+  border-radius: 10px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: rgba(142,198,195,0.4); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* ── Responsive ── */
+@media (max-width: 576px) {
+  .fav-page h2 { font-size: 1.35rem; }
+  .fav-film-card .card-title,
+  .rec-film-card .card-title { font-size: 0.8rem; }
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../../api/AxiosConfig"; 
+import api from "../../api/AxiosConfig";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Client.css";
 import "./FilmPage.css";
@@ -28,9 +28,15 @@ export default function FilmInfoPageClient() {
         return sortOrder === "asc" ? compare : -compare;
     });
 
+    // useEffect(() => {
+    //     loadFilm();
+    //     loadReviews();
+    // }, [id]);
+
     useEffect(() => {
         loadFilm();
         loadReviews();
+        loadFavorites();  // <-- додаємо тут
     }, [id]);
 
     const loadFilm = async () => {
@@ -45,19 +51,93 @@ export default function FilmInfoPageClient() {
     const loadReviews = async () => {
         try {
             const response = await api.get(`/comments/title/${id}`);
-            setReviews(response.data);
+            const reviewsData = response.data;
+
+            const userIds = [...new Set(reviewsData.map(r => r.userId))];
+
+            const usersData = await Promise.all(
+                userIds.map(uid => api.get(`/users/${uid}`).then(res => res.data))
+            );
+
+            const userMap = {};
+            usersData.forEach(user => {
+                userMap[user.userId] = user.userName; 
+            });
+
+            console.log("Fetched users for reviews:", usersData);
+
+            console.log("User map for reviews:", userMap);
+
+            const reviewsWithNames = reviewsData.map(r => ({
+                ...r,
+                userName: userMap[r.userId] || "Anonym"
+            }));
+
+            console.log("Reviews with user names:", reviewsWithNames);
+
+            setReviews(reviewsWithNames);
         } catch (err) {
             console.error("Failed to load reviews", err);
         }
     };
+    // const loadReviews = async () => {
+    //     try {
+    //         const response = await api.get(`/comments/title/${id}`);
+    //         setReviews(response.data);
+    //     } catch (err) {
+    //         console.error("Failed to load reviews", err);
+    //     }
+    // };
 
-    const toggleFavorite = () => {
-        if (favorites.includes(id)) {
-            setFavorites(favorites.filter((fid) => fid !== id));
-        } else {
-            setFavorites([...favorites, id]);
+    // const toggleFavorite = () => {
+    //     if (favorites.includes(id)) {
+    //         setFavorites(favorites.filter((fid) => fid !== id));
+    //     } else {
+    //         setFavorites([...favorites, id]);
+    //     }
+    // };
+
+    const loadFavorites = async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) return;
+
+        try {
+            const response = await api.get(`/favs/${user.userId}`);
+            const favIds = response.data.map(fav => fav.titleId);
+            setFavorites(favIds);
+        } catch (err) {
+            console.error("Failed to load favorites", err);
         }
     };
+
+    const toggleFavorite = async () => {
+        const token = localStorage.getItem("site");
+        const user = JSON.parse(localStorage.getItem('user'));
+        const userId = user?.userId;
+
+        try {
+            if (favorites.includes(id)) {
+                // Видаляємо з фаворитів
+                await api.delete(`/favs/${id}`, {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                setFavorites(prev => prev.filter(fid => fid !== id));
+            } else {
+                // Додаємо в фаворити
+                await api.post(`/favs`, {
+                    userId: userId,
+                    titleId: id
+                }, {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                setFavorites(prev => [...prev, id]);
+            }
+        } catch (err) {
+            console.error("Failed to toggle favorite", err);
+        }
+    };
+
+
 
     const handleAddReview = async (e) => {
         e.preventDefault();
@@ -161,7 +241,7 @@ export default function FilmInfoPageClient() {
 
                 <form onSubmit={handleAddReview} className="mb-4">
                     <div className="mb-3">
-                        <label className="form-label fw-semibold">Yours review</label>
+                        <label className="form-label fw-semibold">Your review</label>
                         <textarea
                             className="form-control"
                             rows="3"
@@ -174,7 +254,19 @@ export default function FilmInfoPageClient() {
 
                     <div className="mb-3">
                         <label className="form-label fw-semibold">Rating</label>
-                        <small className="text-muted">{rating?.toFixed(1)} / 5</small>
+                        <div className="star-rating">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <span
+                                    key={star}
+                                    className={`star ${rating >= star ? "filled" : ""}`}
+                                    onClick={() => setRating(star)}
+                                    style={{ cursor: "pointer", fontSize: "1.5rem", color: rating >= star ? "#FFD700" : "#ccc" }}
+                                >
+                                    ★
+                                </span>
+                            ))}
+                        </div>
+                        <small className="text-muted ms-2">{rating} / 5</small>
                     </div>
 
                     <button className="btn btn-primary">Add review</button>
@@ -208,7 +300,7 @@ export default function FilmInfoPageClient() {
                         {sortedReviews.map((r, idx) => (
                             <div key={idx} className="list-group-item mb-2 rounded shadow-sm review-body">
                                 <div className="d-flex justify-content-between">
-                                    <strong className="title-name" >{r.userId || "Anonym"}</strong>
+                                    <strong className="title-name" >{r.userName || "Anonym"}</strong>
                                     <span className="text-warning">⭐ {r.rating}</span>
                                 </div>
                                 <p className="mb-0">{r.info}</p>

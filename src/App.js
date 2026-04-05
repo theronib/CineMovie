@@ -18,6 +18,7 @@ import ViewUser from './pages/Admin/ViewUser';
 import UsersCommentsPage from './pages/Admin/UserCommentsPage';
 import AddFilms from './pages/Admin/AddFilms';
 import UpdateFilm from './pages/Admin/UpdateFilm';
+import FavouriteFilmsPage from './pages/User/FavouriteFilmsPage';
 
 function App() {
   return (
@@ -145,6 +146,14 @@ function App() {
               }
             />
 
+            <Route
+              path="/user-page/films/favourite/"
+              element={
+                <ProtectedRoute>
+                  <FavouriteFilmsPage />
+                </ProtectedRoute>
+              }
+            />
 
           </Routes>
         </AuthProvider>

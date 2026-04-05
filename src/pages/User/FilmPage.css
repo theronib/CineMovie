@@ -252,3 +252,12 @@
     padding: 1rem;
   }
 }
+
+.star {
+  transition: color 0.2s;
+}
+
+.star:hover,
+.star:hover~.star {
+  color: #FFD700;
+}
