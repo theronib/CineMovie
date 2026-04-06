@@ -43,8 +43,6 @@ export default function UsersCommentsPage() {
     };
 
     const deleteReview = async (userId, reviewId) => {
-        // !to_change add deleting of comment
-        // @DeleteMapping("remove/{comment}/{user}")
     };
 
     return (

@@ -36,7 +36,7 @@ export default function FilmInfoPageClient() {
     useEffect(() => {
         loadFilm();
         loadReviews();
-        loadFavorites();  // <-- додаємо тут
+        loadFavorites();  
     }, [id]);
 
     const loadFilm = async () => {
@@ -117,13 +117,11 @@ export default function FilmInfoPageClient() {
 
         try {
             if (favorites.includes(id)) {
-                // Видаляємо з фаворитів
                 await api.delete(`/favs/${id}`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 setFavorites(prev => prev.filter(fid => fid !== id));
             } else {
-                // Додаємо в фаворити
                 await api.post(`/favs`, {
                     userId: userId,
                     titleId: id

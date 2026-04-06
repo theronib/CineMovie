@@ -19,7 +19,6 @@ export default function HomePageClient() {
 
     const navigate = useNavigate();
 
-    // Завантажуємо всі фільми
     useEffect(() => {
         loadFilms();
         loadFavorites();
@@ -98,10 +97,8 @@ export default function HomePageClient() {
 
         try {
             if (favorites.includes(filmId)) {
-                // Не даємо видаляти тут, як раніше
                 alert("You can delete this film from your favorites on favourite page");
             } else {
-                // POST на бекенд
                 await api.post("/favs", {
                     userId: user.userId,
                     titleId: filmId
@@ -109,7 +106,6 @@ export default function HomePageClient() {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
 
-                // Оновлюємо локальний стан
                 setFavorites(prev => [...prev, filmId]);
             }
         } catch (err) {

@@ -1,7 +1,4 @@
-/* ── UpdateFilm Page ─────────────────────────────────────────── */
-/* Reuses: form-control (client.css), users-alert (UsersPage.css) */
-/* addfilms-loading/spinner (AddFilms.css), films-modal-btn       */
-/* (FilmsPage.css), reviews-admin-title (AllReviewsPage.css)      */
+
 
 .update-film-page {
   min-height: 100vh;

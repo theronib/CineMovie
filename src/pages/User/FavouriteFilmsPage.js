@@ -30,7 +30,6 @@ export default function FavouriteFilmsPage() {
         loadFilms();
     }, []);
 
-    // Завантаження улюблених
     useEffect(() => {
         const fetchFavorites = async () => {
             try {
@@ -53,7 +52,7 @@ export default function FavouriteFilmsPage() {
         fetchFavorites();
     }, [user.userId]);
 
-    // Рекомендації
+
     useEffect(() => {
         if (favorites.length === 0 || films.length === 0) {
             setRecommendationsLoading(false);
